@@ -33,9 +33,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a href="{{ url('/') }}" class="nav-link">Conciertos cerca tuyo</a>
-                        </li>
+                        @guest
+                        @else
+                            <li class="nav-item">
+                                <a href="{{ url('/') }}" class="nav-link">Artistas favoritos</a>
+                            </li>
+                        @endguest
                         <li class="nav-item">
                             <a href="{{ url('/search') }}" class="nav-link">Buscador</a>
                         </li>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
+use App\Http\Controllers\ControllerApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::get('/concerts', [ControllerView::class, 'concerts']);
 Route::get('/welcome', [ControllerView::class, 'welcome']);
 
 Route::get('/search', [ControllerView::class, 'search']);
+
+Route::post('/search', [ControllerApi::class, 'search']);
+
 
 Auth::routes();
 
