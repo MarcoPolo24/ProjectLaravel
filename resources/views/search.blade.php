@@ -273,19 +273,18 @@
                                 <option value="EH">Western Sahara</option>
                                 <option value="YE">Yemen</option>
                                 <option value="ZM">Zambia</option>
-                                <option value="ZW">Zimbabwe</option>
-                            </select>
+                                <option value="ZW">Zimbabwe</option></select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-                  </form>
+                    <input hidden type="text" name="page" value="1">
+                    <input hidden type="text" name="addArtist" value="{{ false }}">
+                </form>
+              </div>
             </div>
-    </div>
-
-    <div>
+          <div>
         <h1></h1>
     </div>
 </div>
-
 
 @endsection

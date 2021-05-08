@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Music Finder
@@ -33,15 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @guest
-                        @else
+                        @auth
                             <li class="nav-item">
-                                <a href="{{ url('/') }}" class="nav-link">Artistas favoritos</a>
+                                <a href="{{ url('/favorites') }}" class="nav-link">Artistas favoritos</a>
                             </li>
-                        @endguest
+                        @endauth
                         <li class="nav-item">
                             <a href="{{ url('/search') }}" class="nav-link">Buscador</a>
                         </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,7 +71,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -83,7 +82,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main style="padding: 80px 0px 80px 0px;">
             @yield('content')
         </main>
     </div>

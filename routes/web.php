@@ -23,8 +23,15 @@ Route::get('/welcome', [ControllerView::class, 'welcome']);
 
 Route::get('/search', [ControllerView::class, 'search']);
 
+Route::get('/results', [ControllerView::class, 'results']);
+
+Route::get('/favorites', [ControllerView::class, 'favorites']);
+
+Route::post('/deleteFav', [ControllerView::class, 'deleteFav']);
+
 Route::post('/search', [ControllerApi::class, 'search']);
 
+Route::post('/resultsArtists', [ControllerView::class, 'resultsArtists']);
 
 Auth::routes();
 

@@ -2,33 +2,63 @@
 
 @section('content')
 <div class="container">
-    <div class="">
+    <div>
         @foreach ($results as $result)
-        @if ( $result->entities)
-        <div class="card mb-1">   
-        @else
-        <div class="card mb-1 border border-danger">
-        @endif
-            <div class="card-body ">
-
-                <h3>{{ $result->title }}</h3>
-                @if ($result->entities)
-                    <p>{{ $result->entities[0]->name }}</p>
+            <form action="/search" method="POST">
+                @csrf
+                @if ( $result->entities)
+                    <div class="card mb-1">   
                 @else
-                    <p class="text-danger">No se ha encontrado la localización del evento</p>
+                    <div class="card mb-1 border border-danger">
                 @endif
+                <div class="card-body">
+                    <button class="btn btn-primary mt-3 mb-2 float-right">Seguir artista</button>
+            </form>
+                <form action="/resultsArtists" method="POST">
+                    @csrf
+                    <button class="btn btn-primary mt-3 mb-2 float-right">Información artista</button>
+                </form>
+                    <input hidden type="text" name="artist" value="{{ $result->title }}">
+                    <input hidden type="text" name="page" value="{{ $page }}">
+                    <input hidden type="text" name="country" value="{{ $country }}">
+                    <input hidden type="text" name="category" value="{{ $category }}">
+                    <input hidden type="text" name="addArtist" value="{{ true }}">
+                    <input hidden type="text" name="artist_id" value="{{ $result->id }}">
+                                       
+                    <h3>{{ $result->title }}</h3>
+                    @if ($result->entities)
+                        <p>{{ $result->entities[0]->name }}</p>
+                    @else
+                        <p class="text-danger">No se ha encontrado la localización del evento</p>
+                    @endif
+               
             </div>
         </div>
         @endforeach
         @if ($next)
-            <a href="/" type="button" class="btn btn-primary mt-3">Ver los 10 siguientes</a>
-            @else
+            <form action="/search" method="POST">
+                @csrf
+                {{-- Desde la vista incrementamos el valor de la página y se la enviamos al controlador para poder imprimir
+                    la siguiente pagina --}}
+                <input hidden type="text" name="page" value="{{ $page + 1 }}">
+                <input hidden type="text" name="country" value="{{ $country }}">
+                <input hidden type="text" name="category" value="{{ $category }}">
+                <input hidden type="text" name="addArtist" value="{{ false }}">
+                <div class="text-center">
+                    <p>Página {{ $page }} / {{ $total/10}}</p>
+                    <button class="btn btn-primary mt-3 mb-2">Ver más ({{ $total }} eventos)</button>
+                </div>
+            </form>
+        @else
             <div class="text-center">
+                @if ($total > 10)
+                    <p>Página {{ $page }} / {{ (int)$total/10}}</p>
+                @else
+                    <p>Página {{ $page }} / 1</p>
+                @endif
                 <p class="mt-3 alert alert-info ">No hay más resultados</p>
-            </div>
+            </div>  
         @endif
-
-        
     </div>
 </div>
 @endsection
