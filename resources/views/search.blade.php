@@ -7,12 +7,6 @@
                 <form action="/search" method="POST">
                     @csrf
                     <div class="form-group row">
-                      <label for="artist" class="col-sm-2 col-form-label">Artista:</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="artist" id="arist" placeholder="Nombre del artista">
-                      </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="category" class="col-sm-2 col-form-label">Categoria</label>
                       <div class="col-sm-10">
                         <select class="form-control" name="category" id="category">

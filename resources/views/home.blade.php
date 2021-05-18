@@ -16,14 +16,6 @@
                     <p>No has iniciado sesión</p>
                 </div>
             @endguest
-            <div class="card">
-                <div class="card-header">{{ __('Panel de control') }}</div>
-                <div class="card-body">
-                    @auth
-                        
-                    @endauth
-                </div>
-            </div>
         </div>
     </div>
 </div>

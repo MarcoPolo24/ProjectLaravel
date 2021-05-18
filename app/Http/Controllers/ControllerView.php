@@ -32,24 +32,32 @@ class ControllerView extends Controller
         return view('results');
     }
 
-    public function resultsArtists()
+    public function resultsFavArtists(Request $request)
     {
-        return view('resultsArtists', compact('results'));
+        $request = FavArtist::where('id_artista', '=', $request->id)->first();
+        return view('resultsArtists', compact('request'));
+
+    }
+
+    public function resultsArtists(Request $request)
+    {
+        return view('resultsArtists', compact('request'));
     }
 
     public function favorites()
     {
         $user = auth()->user();
+        //Guardo todos los artistas favoritos relacionados con el usuario de la sesión actual
+        //y los envío a la view 'favorites' para imprimir su información
         $results = FavArtist::where('id_usuario', '=', $user->id)->get();
         return view('favorites', compact('results'));
     }
 
     public function deleteFav(Request $request)
     {
-        $user = auth()->user();
-        $results = FavArtist::where('id_usuario', '=', $user->id)->get();
         $artist = FavArtist::where('id_artista', '=', $request->id);
         $artist->delete();
-        return view('favorites', compact('results'));
+        return redirect()->route('favorites');
+        // return view('favorites', compact('results'));
     }
 }

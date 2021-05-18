@@ -25,13 +25,15 @@ Route::get('/search', [ControllerView::class, 'search']);
 
 Route::get('/results', [ControllerView::class, 'results']);
 
-Route::get('/favorites', [ControllerView::class, 'favorites']);
+Route::get('/favorites', [ControllerView::class, 'favorites'])->name('favorites');
 
 Route::post('/deleteFav', [ControllerView::class, 'deleteFav']);
 
 Route::post('/search', [ControllerApi::class, 'search']);
 
 Route::post('/resultsArtists', [ControllerView::class, 'resultsArtists']);
+
+Route::post('/resultsFavArtists', [ControllerView::class, 'resultsFavArtists']);
 
 Auth::routes();
 

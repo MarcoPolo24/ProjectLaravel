@@ -14,22 +14,26 @@
             </tr>
             </thead>
             <tbody>
-                <form action="/resultsArtists" method="POST">
-                    @csrf
-                    @foreach ($results as $result)
-                    <tr>
-                        <th scope="row">1</th>
-                        <th>{{ $result->nombre_artista }}</th>
-                        <th><button class="btn btn-primary">Información</button></th>
-                </form>
-                <form action="/deleteFav" method="POST">
-                    @csrf
-                        <input hidden type="text" name="id" value="{{ $result->id_artista }}">
-                        <th><button class="btn btn-danger">Eliminar</button></th>
-                    </tr>
-                </form>
-                    @endforeach
-                
+                @foreach ($results as $result)
+                <tr>
+                    <td scope="row">1</td>
+                    <td>{{ $result->artist }}</td>
+                    <td>
+                        <form action="/resultsFavArtists" method="POST">
+                            @csrf
+                            <input hidden type="text" name="id" value="{{ $result->id_artista }}">
+                            <button class="btn btn-primary">Información</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/deleteFav" method="POST">
+                            @csrf
+                            <button class="btn btn-danger">Eliminar</button>
+                            <input hidden type="text" name="id" value="{{ $result->id_artista }}">
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     @endif
