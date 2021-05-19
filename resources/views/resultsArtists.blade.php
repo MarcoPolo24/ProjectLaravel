@@ -72,15 +72,14 @@
     window.initMap = function() {
         var coor1 = {!! json_encode($request->coordinates1) !!};
         var coor2 = {!! json_encode($request->coordinates2) !!};
-
-        // The location of Uluru
+        
         const uluru = { lat: parseFloat(coor2) , lng: parseFloat(coor1) };
-        // The map, centered at Uluru
+        
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 16,
             center: uluru,
         });
-        // The marker, positioned at Uluru
+        
         const marker = new google.maps.Marker({
             position: uluru,
             map: map,
@@ -88,8 +87,6 @@
     };
 @endif
 
-
-// Append the 'script' element to 'head'
 document.head.appendChild(script);
 
 </script>

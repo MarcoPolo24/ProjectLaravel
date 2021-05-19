@@ -19,6 +19,7 @@
                 <input hidden type="text" name="localidad" value="{{ $result->entities ? $result->entities[0]->name : null }}">
                 <input hidden type="text" name="updated" value="{{ $result->updated }}">
                 <input hidden type="text" name="date" value="{{ $result->start }}">
+                
                 @if ( $result->entities)
                     <div class="card mb-1">   
                 @else
