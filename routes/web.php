@@ -17,13 +17,14 @@ use App\Http\Controllers\ControllerApi;
 
 Route::get('/', [ControllerView::class, 'home']);
 
+Route::post('/thanks', [ControllerView::class, 'thanks']);
+
 Route::get('/concerts', [ControllerView::class, 'concerts']);
 
 Route::get('/welcome', [ControllerView::class, 'welcome']);
 
 Route::get('/search', [ControllerView::class, 'search']);
 
-Route::get('/results', [ControllerView::class, 'results']);
 
 Route::get('/favorites', [ControllerView::class, 'favorites'])->name('favorites');
 
@@ -34,6 +35,8 @@ Route::post('/search', [ControllerApi::class, 'search']);
 Route::post('/resultsArtists', [ControllerView::class, 'resultsArtists']);
 
 Route::post('/resultsFavArtists', [ControllerView::class, 'resultsFavArtists']);
+
+Route::post('/formCompra', [ControllerView::class, 'formCompra']);
 
 Auth::routes();
 

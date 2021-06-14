@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function favorites()
+    {
+        return $this->hasMany(FavArtist::class, 'id_usuario')->where('fav', '=', 1);
+    }
+
+    public function favorite($id_artista)
+    {
+        return $this->hasOne(FavArtist::class, 'id_usuario')->where('id_artista', '=', $id_artista);
+    }
 }

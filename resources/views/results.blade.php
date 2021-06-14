@@ -26,12 +26,13 @@
                     <div class="card mb-1 border border-danger">
                 @endif
                 <div class="card-body">
-                <button class="btn btn-primary mt-3 mb-2 ml-2 float-right">Seguir</button>
+                <button class="btn btn-primary mt-3 mb-2 ml-2 float-right" {{ !auth()->user() ? 'disabled' : '' }}>Seguir</button>
             </form>
             <form action="/resultsArtists" method="POST">
                 @csrf
                 <button class="btn btn-primary mt-3 mb-2 ml-3 float-right">Información</button>
                 <input hidden type="text" name="artist" value="{{ $result->title }}">
+                <input hidden type="text" name="artist_id" value="{{ $result->id }}">
                 <input hidden type="text" name="country" value="{{ $country }}">
                 <input hidden type="text" name="category" value="{{ $category }}">
                 <input hidden type="text" name="coordinates1" value="{{ $result->location[0] }}">
@@ -40,6 +41,7 @@
                 <input hidden type="text" name="timezone" value="{{ $result->timezone }}">
                 <input hidden type="text" name="updated" value="{{ $result->updated }}">
                 <input hidden type="text" name="date" value="{{ $result->start }}">
+                <input hidden type="text" name="price" value="{{ $price }}">
                 <h3>{{ $result->title }}</h3>
                 @if ($result->entities)
                     <input hidden type="text" name="location" value="{{ $result->entities[0]->name }}">

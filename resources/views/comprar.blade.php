@@ -1,25 +1,41 @@
+<!DOCTYPE html>
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-        <div class="card">
-            <div class="card-body bg-light">
-                <form action="/search" method="POST">
-                    @csrf
-                    <div class="form-group row">
-                        <label for="category" class="col-sm-2 col-form-label">Categoria</label>
-                      <div class="col-sm-10">
-                        <select class="form-control" name="category" id="category">
-                          <option value="concerts">Conciertos</option>
-                          <option value="festivals">Festivales</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="country" class="col-sm-2 col-form-label">País</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" name="country" id="country">
-                                <option value="AF">Afghanistan</option>
+<div class="container-fluid row justify-content-center">
+    <form method="POST" action="thanks">
+        @csrf
+        <div class="form-group">
+            <h1 class="h3">Rellene el formulario para realizar la compra: </h1>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="name" required>
+            </div>
+            <div class="col">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" name="surname" required>
+            </div>
+            <div class="col">
+                <label>Localidad</label>
+                <input type="text" class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label>Dirección de facturación</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="col">
+                <label>Código postal</label>
+                <input type="text" maxlength="5" class="form-control" name="cp" required>
+            </div>
+            <div class="col">
+                <p>País</p>
+                <select id="card-expiration-month" required>
+                     <option value="AF">Afghanistan</option>
                                 <option value="AX">Åland Islands</option>
                                 <option value="AL">Albania</option>
                                 <option value="DZ">Algeria</option>
@@ -267,80 +283,66 @@
                                 <option value="EH">Western Sahara</option>
                                 <option value="YE">Yemen</option>
                                 <option value="ZM">Zambia</option>
-                                <option value="ZW">Zimbabwe</option></select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="country" class="col-sm-2 col-form-label">Fecha:</label>
-                        <div class="row">
-                          <div class="col">
-                            <p>Año</p>
-                            <p>2021</p>
-                          </div>
-                          <div class="col">
-                            <p>Mes</p>
-                            <select id="month" name ="month">
-                              <option selected="selected">01</option>
-                              <option>02</option>
-                              <option>03</option>
-                              <option>04</option>
-                              <option>05</option>
-                              <option>06</option>
-                              <option>07</option>
-                              <option>08</option>
-                              <option>09</option>
-                              <option>10</option>
-                              <option>11</option>
-                              <option>12</option>
-                            </select>
-                          </div>
-                            <div class="col">
-                            <p>Dia</p>
-                            <select id="day" name="day">
-                              <option selected="selected">01</option>
-                              <option>02</option>
-                              <option>03</option>
-                              <option>04</option>
-                              <option>05</option>
-                              <option>06</option>
-                              <option>07</option>
-                              <option>08</option>
-                              <option>09</option>
-                              <option>10</option>
-                              <option>11</option>
-                              <option>12</option>
-                              <option>13</option>
-                              <option>14</option>
-                              <option>15</option>
-                              <option>16</option>
-                              <option>17</option>
-                              <option>18</option>
-                              <option>19</option>
-                              <option>20</option>
-                              <option>21</option>
-                              <option>22</option>
-                              <option>23</option>
-                              <option>24</option>
-                              <option>25</option>
-                              <option>26</option>
-                              <option>27</option>
-                              <option>28</option>
-                              <option>29</option>
-                              <option>30</option>
-                              <option>31</option>
-                            </select>
-                          </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-                    <input hidden type="text" name="page" value="1">
-                    <input hidden type="text" name="addArtist" value="{{ false }}">
-                </form>
-              </div>
+                                <option value="ZW">Zimbabwe</option>
+                </select>
             </div>
-          <div>
-        <h1></h1>
-    </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <label>Número de tarjeta</label>
+                <input type="number" class="form-control" name="tNum" required>
+            </div>
+            <div class="col">
+                <label>Fecha de caducidad</label>
+                <br>
+                <select id="card-expiration-month" required>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+                <select id="card-expiration-month" required>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                    <option>2028</option>
+                    <option>2029</option>
+                    <option>2030</option>
+                    <option>2031</option>
+                    <option>2032</option>
+                </select>
+            </div>
+            <div class="col">
+                <label>Código de seguridad</label>
+                <input type="number" class="form-control" name="sCode" required>
+            </div>
+        </div>
+
+        <input hidden type="text" name="artist" value="{{ $request->artist }}">
+        <input hidden type="text" name="price" value="{{ $request->price }}">
+        
+        <input type="submit" class="btn btn-primary mb-3 mt-3">
+            @if ($error == 1)
+                <div class="alert alert-danger">
+                    <div class="alert" role="alert">
+                        <p class="h4 justify-content-center">Datos incorrectos, revísalos!</p> 
+                    </div>
+                </div>
+            @endif
+    </form>
 </div>
 
 @endsection

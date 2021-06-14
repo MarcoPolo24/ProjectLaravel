@@ -45,6 +45,18 @@
                     </div>
                 </div>
             </div>
+            <form action="/formCompra" method="POST">
+                @csrf
+                <input hidden type="text" name="artist" value="{{ $request->artist }}">
+                <input hidden type="text" name="price" value="{{ $price }}">
+                <div class="card {{ $request->timezone == null ? 'border-danger' : 'border-secondary' }} mb-3 mt-3 ml-3" style="max-width: 30rem;">
+                    <div class="card-header h3 {{ $request->timezone == null ? 'text-danger' : '' }}">Entrada</div>
+                    <div class="card-body text-secondary">
+                        <h4>Precio: EUR {{ number_format( $price, 2) }}</h4>
+                        <button class="btn btn-success"j {{ !auth()->user() ? 'disabled' : '' }}>Comprar entrada</button>
+                    </div>
+                </div>
+            </form>
             
             <div class="d-flex justify-content-center">
                 <div id="map" style="position: relative; width:600px; height: 400px;"></div>
